@@ -1,6 +1,9 @@
 package net.doorknob.titaniumod;
 
 import com.mojang.logging.LogUtils;
+import net.doorknob.titaniumod.item.ModCreativeModeTabs;
+import net.doorknob.titaniumod.item.ModItems;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -24,6 +27,9 @@ public class Titaniumod
     {
         IEventBus modEventBus = context.getModEventBus();
 
+        ModCreativeModeTabs.register(modEventBus);
+
+        ModItems.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 
@@ -41,10 +47,11 @@ public class Titaniumod
 
     }
 
-    // Add the example block item to the building blocks tab
-    private void addCreative(BuildCreativeModeTabContentsEvent event)
-    {
-
+    private void addCreative(BuildCreativeModeTabContentsEvent event) {
+        if(event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
+            event.accept(ModItems.TITANIUM_INGOT);
+            event.accept(ModItems.RAW_TITANIUM);
+        }
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
