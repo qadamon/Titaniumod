@@ -17,10 +17,8 @@ import org.slf4j.Logger;
 @Mod(Titaniumod.MOD_ID)
 public class Titaniumod
 {
-    // Define mod id in a common place for everything to reference
     public static final String MOD_ID = "titaniumod";
-    // Directly reference a slf4j logger
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogUtils.getLogger();
 
     public Titaniumod(FMLJavaModLoadingContext context)
     {
